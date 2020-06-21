@@ -3,12 +3,42 @@
   <head>
     <title>Noar</title>
     <%= csrf_meta_tags %>
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
 
   <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo">NoAR</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/posts">Posts</a></li>
+          <% if user_signed_in? %>
+            <li><%= link_to current_user.name, edit_user_registration_path, method: 'get' %></li>
+            <li><%= link_to 'Sign out', destroy_user_session_path, method: 'delete' %></li>
+          <% else %>
+            <!-- 아래 두개도 link_to 헬퍼 사용 가능-->
+            <li><a href="/users/sign_in">Sign in</a></li>
+            <li><a href="/users/sign_up">Sign up</a></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+  
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="/posts">Posts</a></li>
+      <% if user_signed_in? %>
+          <li><%= link_to current_user.name, edit_user_registration_path, method: 'get' %></li>
+          <li><%= link_to 'Sign out', destroy_user_session_path, method: 'delete' %></li>
+      <% else %>
+          <!-- 아래 두개도 link_to 헬퍼 사용 가능-->
+          <li><a href="/users/sign_in">Sign in</a></li>
+          <li><a href="/users/sign_up">Sign up</a></li>
+      <% end %>
+    </ul>
     <%= yield %>
   </body>
 </html>
