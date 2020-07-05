@@ -16,6 +16,8 @@ class User < ApplicationRecord
   #가져올 때 Likes를 토대로 찾게되고,
   #그 속에서 post만 묶어서 보여준다.(그 출처는 post다)
   has_many :liked_posts, through: :likes, source: :post
+  has_many :comments
+  mount_uploader :avatar, AvatarUploader
   
   #User 모델의 한 객체에 대해 특정 글에 대한 좋아요 유무를 확인
   def is_like?(post) 

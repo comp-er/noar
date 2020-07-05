@@ -6,4 +6,6 @@ class Post < ApplicationRecord
     # 특정 글에 좋아요를 누른 users를 얻을 수 있음. 
     # ex) post.liked_users
     has_many :liked_users, through: :likes, source: :user
+    has_many :comments
+    mount_uploader :image, PostImageUploader
 end

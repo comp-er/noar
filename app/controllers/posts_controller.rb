@@ -13,6 +13,13 @@ class PostsController < ApplicationController
     respond_with(@posts)
   end
   
+  def show
+    # .com/posts/4 으로 요청 가능
+    # .com/posts/4.json 으로 요청 가능
+    @post = Post.find_by(id: params[:id])
+    respond_with(@post)
+  end
+  
   def new
   end
   
@@ -21,7 +28,10 @@ class PostsController < ApplicationController
     #Post 모델에서 새로운 객체를 생성해서
     #user_id: 는 현재 로그인한 사람의 id를 넣고
     #내용은 파리미터로 온 content를 넣어서 저장해주겠다.
-    new_post = Post.new(user_id: current_user.id, content: params[:content])
+    #views/posts/new.html.erb에서 넘어온 image를 carrierwave가 처리
+    new_post = Post.new(user_id: current_user.id,
+                        content: params[:content],
+                        image: params[:image])
     if new_post.save
       redirect_to root_path
     else

@@ -5,7 +5,12 @@
 				<div class="card-title">
 					새 글 작성하기
 				</div>
-				<%= form_tag posts_path do %>
+				<!--이미지를 추가하기 위해 멀티파트 적용-->
+				<%= form_tag posts_path, multipart: true do %>
+				<div class="imput-field">
+					<%= file_field_tag :image %>
+				</div>
+				
 				<div class="input-field">
 					<%=text_area_tag :content, nil, class: "materialize-textarea", placeholder: "무슨 생각을 하고 있나요?" %>
 				</div>
