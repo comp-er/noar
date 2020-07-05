@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'carrierwave'
+gem 'mini_magick'
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
