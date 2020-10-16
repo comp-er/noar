@@ -5,3 +5,16 @@
 .pre-line {
     white-space: pre-line;
 }
+
+.post {
+    .card-content {
+        .thumbnail {
+            vertical-align :middle;
+        }
+        .content {
+            //위아래 20px, 좌우 0
+            margin: 20px 0;
+            color: grey;
+        }
+    }
+}
